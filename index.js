@@ -70,6 +70,15 @@ const colours = {
     purple: "H",
     dark_grey: "L",
 };
+// textures
+const textures = {
+    missingTexture: [
+        [colours.black, colours.purple, colours.black, colours.purple],
+        [colours.purple, colours.black, colours.purple, colours.black],
+        [colours.black, colours.purple, colours.black, colours.purple],
+        [colours.purple, colours.black, colours.purple, colours.black]
+    ]
+}
 function render() {
     calculateTriggerValues();
     // code goes here
@@ -175,7 +184,7 @@ main();
 // functions
 
 // draw functions
-function drawTexturedPlane(x, y, z, size, texture)
+function drawTexturedPlane(x, y, z, size, texture = textures.missingTexture)
 {
     // x, y, z are the center of the plane
     // draw wireframe
