@@ -149,7 +149,7 @@ function render() {
     // back left
     drawWireFrame(-50, 10, 10, -60, -10, 20, colours.red);
 
-    drawTexturedPlane(20,20,20,1);
+    drawTexturedPlane(0,0,0,20);
 
     // tests with colours
 
@@ -188,11 +188,10 @@ function drawTexturedPlane(x, y, z, size, texture = textures.missingTexture)
 {
     // x, y, z are the center of the plane
     // draw wireframe
-    drawWireFrame(x - size, y - size, z, x + size, y - size, z, colours.black);
-    drawWireFrame(x + size, y - size, z, x + size, y + size, z, colours.black);
-    drawWireFrame(x + size, y + size, z, x - size, y + size, z, colours.black);
-    drawWireFrame(x - size, y + size, z, x - size, y - size, z, colours.black);
-
+    drawWireFrame(x - size / 2, y, z, x + size / 2, y, z, colours.black);
+    drawWireFrame(x + size / 2, y, z, x + size / 2, y, z, colours.black);
+    drawWireFrame(x + size / 2, y, z, x - size / 2, y, z, colours.black);
+    drawWireFrame(x - size / 2, y, z, x - size / 2, y, z, colours.black);
 }
 function setPixel(x, y, colour = "5")
 {
