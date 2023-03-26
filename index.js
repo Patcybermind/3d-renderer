@@ -239,12 +239,6 @@ function drawLine(x1, y1, x2, y2, colour = "5")
         for (i = 0; i !== ll; i += dlt) setPixel(x1 + i, (y1 + i * mul) | 0, colour);
     }
     setPixel(x2, y2, colour);   // sets last pixel
-
-    // function setPixel(x, y) {
-    //     if (((x < 160) && (y < 128)) && ((x > 0) && (y > 0))) {
-    //         addSprite(x, y, blue_pixel)
-    //     }
-    // }
 }
 function drawWireFrame(fx1, fy1, fz1, fx2, fy2, fz2, colour = "5")
 { // f stands for function
