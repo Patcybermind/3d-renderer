@@ -79,6 +79,34 @@ const textures = {
         [colours.purple, colours.black, colours.purple, colours.black]
     ]
 }
+// set up everything
+
+let sprites = []
+// not sure of compatability, but this works
+const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()_+-=[]{}#~'@;:/?>,<|`¬"
+let idState = 0
+
+const background = getNextId()
+
+initializeSprites();
+
+let tileMap = ""
+for (let y = 0; y < 8; y++) {
+    for (let x = 0; x < 10; x++) {
+        tileMap += sprites[x][y].id
+    }
+    tileMap += `
+`
+}
+
+flushScreen();
+setMap(tileMap);
+setBackground(background);
+
+// you run the main function on startup because or else you won't see anything at first
+main();
+
+// things you want to render
 function render() {
     calculateTriggerValues();
     // code goes here
@@ -149,49 +177,28 @@ function render() {
     // back left
     drawWireFrame(-50, 10, 10, -60, -10, 20, colours.red);
 
-    drawTexturedPlane(0,0,0,20);
-
-    // tests with colours
+    drawTexturedPlane(0,-10,0,20);
 
 }
 
-// set up everything
-
-let sprites = []
-// not sure of compatability, but this works
-const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%^&*()_+-=[]{}#~'@;:/?>,<|`¬"
-let idState = 0
-
-const background = getNextId()
-
-initializeSprites();
-
-let tileMap = ""
-for (let y = 0; y < 8; y++) {
-    for (let x = 0; x < 10; x++) {
-        tileMap += sprites[x][y].id
-    }
-    tileMap += `
-`
-}
-
-flushScreen();
-setMap(tileMap);
-setBackground(background);
-
-// you run the main function on startup because or else you won't see anything at first
-main();
 // functions
 
 // draw functions
 function drawTexturedPlane(x, y, z, size, texture = textures.missingTexture)
 {
     // x, y, z are the center of the plane
-    // draw wireframe
-    drawWireFrame(x - size / 2, y, z, x + size / 2, y, z, colours.black);
-    drawWireFrame(x + size / 2, y, z, x + size / 2, y, z, colours.black);
-    drawWireFrame(x + size / 2, y, z, x - size / 2, y, z, colours.black);
-    drawWireFrame(x - size / 2, y, z, x - size / 2, y, z, colours.black);
+    // size is the height and width of the plane
+    drawWireFramePlane(x, y, z, size);
+}
+function drawWireFramePlane(x, y, z, size, colour = colours.black)
+{
+    // x, y, z are the center of the plane
+    // size is the height and width of the plane
+    let halfSize = size / 2;
+    drawWireFrame(x - halfSize, y, z - halfSize, x + halfSize, y, z - halfSize, colour);
+    drawWireFrame(x - halfSize, y, z - halfSize, x - halfSize, y, z + halfSize, colour);
+    drawWireFrame(x + halfSize, y, z + halfSize, x - halfSize, y, z + halfSize, colour);
+    drawWireFrame(x + halfSize, y, z + halfSize, x + halfSize, y, z - halfSize, colour);
 }
 function setPixel(x, y, colour = "5")
 {
