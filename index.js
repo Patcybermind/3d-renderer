@@ -188,6 +188,17 @@ function drawTexturedPlane(x, y, z, size, texture = textures.missingTexture)
 {
     // x, y, z are the center of the plane
     // size is the height and width of the plane
+    let halfSize = size / 2;
+    let points = {
+        frontLeft: [x - halfSize, y, z - halfSize],
+        frontRight: [x + halfSize, y, z - halfSize],
+        backLeft: [x - halfSize, y, z + halfSize],
+        backRight: [x + halfSize, y, z + halfSize]
+    }
+    let textureSize = texture.length;
+    for (let pixelLine = 1; pixelLine <= textureSize; pixelLine++) {
+
+    }
     drawWireFramePlane(x, y, z, size);
 }
 function drawWireFramePlane(x, y, z, size, colour = colours.black)
