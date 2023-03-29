@@ -341,7 +341,7 @@ function initializeSprites()
         }
     }
 }
-function getTilemap()
+function getTileMap()
 {
     const output = [];
     for (let x = 0; x < 10; x++) {
@@ -353,7 +353,7 @@ function getTilemap()
 }
 function flushScreen()
 {
-    let tilemap = getTilemap()
+    let tilemap = getTileMap()
     setLegend(
         ...tilemap,
         [background, bitmap`
