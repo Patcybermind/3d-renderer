@@ -197,17 +197,19 @@ function drawTexturedPlane(x, y, z, size, texture = textures.missingTexture)
         backRight: [x + halfSize, y, z + halfSize]
     }
     let textureSize = texture.length;
-    for (let pixelLine = 1; pixelLine <= textureSize; pixelLine++)
+    for (let pixelLine = 0; pixelLine < textureSize; pixelLine++)
     {
-        for (let pixelInPixelLine = 1; pixelInPixelLine <= textureSize; pixelInPixelLine++)
+        for (let pixelInPixelLine = 0; pixelInPixelLine < textureSize; pixelInPixelLine++)
         {
-            let x1 = points.frontLeft[0] + (pixelInPixelLine - 1) * (size / textureSize);
-            let y1 = points.frontLeft[1];
-            let z1 = points.frontLeft[2] + (pixelLine - 1) * (size / textureSize);
-            let x2 = points.frontLeft[0] + (pixelInPixelLine) * (size / textureSize);
-            let y2 = points.frontLeft[1];
-            let z2 = points.frontLeft[2] + (pixelLine) * (size / textureSize);
-            drawWireFrame(x1, y1, z1, x2, y2, z2, texture[pixelLine - 1][pixelInPixelLine - 1]);
+            drawWireFrame(
+                points.frontLeft[0] + pixelInPixelLine * (size / textureSize),
+                points.frontLeft[1],
+                points.frontLeft[2] + pixelLine * (size / textureSize),
+                points.frontLeft[0] + (pixelInPixelLine + 1) * (size / textureSize),
+                points.frontLeft[1],
+                points.frontLeft[2] + (pixelLine) * (size / textureSize),
+                texture[pixelLine][pixelInPixelLine]
+            )
         }
     }
     drawWireFramePlane(x, y, z, size);
